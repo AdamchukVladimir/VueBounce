@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Product App</title>
+</head>
+<body>
+	<style type="text/css">
+    @import url("style.css");
+		h1 { 
+		 font-size: 120%; 
+		 font-family: Verdana, Arial, Helvetica, sans-serif; 
+		 color: #de8fe9;
+		}
+		body {
+		background-color: #0b0b0c;	
+		color: #de8fe9;
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+		}
+	   </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+	
+    <div id="app">
+        <div class="product">
+          <div class="product-image">
+            <img :src="image" />
+          </div>
+      
+          <div class="product-info">
+            <h1>{{ title }}</h1>
+            <p v-show="inStock">В наличии</p>
+            <p v-if="inventory>10">Много</p>
+            <p v-else-if="inventory <=10 && inventory >0">Мало</p>
+            <p v-else
+              :class="{ outOfStock: !inStock }">Отсутсвуют</p>
+            <p>{{ sale }}</p>  
+            <ul>
+                <li v-for="detail in details">{{ detail}}</li>
+            </ul>
+            <div 
+              class="color-box"
+              v-for="(variant, index) in variants" :key="variant.variantId"
+              :style="{backgroundColor:variant.variantColor}"
+              @mouseover="updateProduct(index)">
+            </div>
+            <div>
+                <p>Доступные размеры</p>
+                <ul>
+                    <li v-for="size in sizes">{{ size }}</li>
+                </ul>
+            </div>
+            <div class="cart">
+              <button 
+                v-on:click="addToCart"
+                :disabled="!inStock"
+                :class="{ disabledButton: !inStock }">Add to cart</button>
+              <button @click="removeFromCart">Remove from cart</button>
+              <p>Cart({{ cart }})</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="main.js"></script>
+    
+</body>
+</html>

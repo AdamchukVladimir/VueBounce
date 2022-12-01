@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Product App</title>
+</head>
+<body>
+	<style type="text/css">
+		h1 { 
+		 font-size: 120%; 
+		 font-family: Verdana, Arial, Helvetica, sans-serif; 
+		 color: #de8fe9;
+		}
+		body {
+		background-color: #0b0b0c;	
+		color: #de8fe9;
+		}
+	   </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+	
+    <div id="app">
+        <div class="product">
+          <div class="product-image">
+            <img :src="image" />
+          </div>
+      
+          <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-show="inStock">В наличии</p>
+            <p v-if="inventory>10">In stock</p>
+            <p v-else-if="inventory <=10 && inventory >0">Almost sold out!</p>
+            <p v-else>Out of Stock</p>
+            <span v-show="onSale">Распродажа</span>
+          </div>
+        </div>
+      </div>
+    <script src="main.js"></script>
+    
+</body>
+</html>
