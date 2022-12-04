@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Product App</title>
+</head>
+<body>
+	<style type="text/css">
+    @import url("style.css");
+		h1 { 
+		 font-size: 120%; 
+		 font-family: Verdana, Arial, Helvetica, sans-serif; 
+		 color: #de8fe9;
+		}
+		body {
+		background-color: #0b0b0c;	
+		color: #de8fe9;
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+		}
+	   </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+	
+	<div id="app">
+        <div class="product">
+          <div class="product-image">
+            <img :src="image" />
+          </div>
+      
+          <div class="product-info">
+            <h1>{{ title }}</h1>
+            <p v-show="inStock">В наличии</p>
+            <p v-if="inStock">In stock</p>
+            <p v-else>Out of Stock</p>
+            <ul>
+                <li v-for="detail in details">{{ detail}}</li>
+            </ul>
+            <div 
+              class="color-circle"
+			  :class="{active: isActive}"
+              v-for="(variant, index) in variants" :key="variant.id"
+			  @mouseover="updateVariant(index)"
+			  :style="{backgroundColor: variant.color}"> 
+            </div>
+            <div class="cart">
+              <button class="button"
+			  :class="{disabledButton: !inStock}"
+			  :disabled="!inStock" 
+			  @click="addToCart">Add to cart</button>
+			  <br>
+              <button @click="removeFromCart">Remove from cart</button>
+              <p>Cart({{ cart }})</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="main.js"></script>
+    <script>const mountedApp = app.mount('#app')</script>
+</body>
+</html>

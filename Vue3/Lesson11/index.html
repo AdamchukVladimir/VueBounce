@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Product App</title>
+</head>
+<body>
+	<style type="text/css">
+    @import url("style.css");
+		h1 { 
+		 font-size: 120%; 
+		 font-family: Verdana, Arial, Helvetica, sans-serif; 
+		 color: #de8fe9;
+		}
+		body {
+		background-color: #0b0b0c;	
+		color: #de8fe9;
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+		}
+	   </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+	
+	  <div id="app">
+    <div class="cart">Cart({{ cart.length }})</div>
+    <product-display :premium="premium" @add-to-cart="addToCartMain" @remove-from-cart="removeFromCart" ></product-display>    
+    
+    </div>
+    <script src="main.js"></script>
+    <script src="./components/ProductDisplay.js"></script>
+	<script src="./components/ReviewForm.js"></script>
+	<script src="./components/ReviewList.js"></script>
+    <script>const mountedApp = app.mount('#app')</script>
+</body>
+</html>
